@@ -28,7 +28,5 @@ internal class CreateProductCommandHandler
         };
 
         return new CreateProductResult(Guid.NewGuid());
-
-        throw new NotImplementedException();
     }
 }
