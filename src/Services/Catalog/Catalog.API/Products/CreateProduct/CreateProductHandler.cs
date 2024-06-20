@@ -11,7 +11,7 @@ public record CreateProductCommand(
     decimal Price)
     : ICommand<CreateProductResult>;
 
-public record CreateProductResult(Guid id);
+public record CreateProductResult(Guid Id);
 
 internal class CreateProductCommandHandler 
     : ICommandHandler<CreateProductCommand, CreateProductResult>
