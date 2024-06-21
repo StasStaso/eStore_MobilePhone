@@ -7,7 +7,7 @@ public record UpdateProductRequest(Guid Id,
     string ImageFile,
     decimal Price);
 
-public record UpdateProductResponse(bool isSuccess);
+public record UpdateProductResponse(bool IsSuccess);
 
 public class UpdateProductEndpoint : ICarterModule
 {

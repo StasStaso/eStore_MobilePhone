@@ -9,7 +9,7 @@ public record UpdateProductCommand(
     decimal Price)
     : ICommand<UpdateProductResult>;
 
-public record UpdateProductResult(bool isSuccess);
+public record UpdateProductResult(bool IsSuccess);
 
 internal class UpdateProductCommandHandler
     (IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
