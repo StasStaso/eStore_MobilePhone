@@ -23,7 +23,6 @@ public class CreateProductEndpoint : ICarterModule
             var response = result.Adapt<CreateProductResponse>();
 
             return Results.Created($"/product/{response.Id}", response);
-
         })
         .WithName("CreateProduct")
         .Produces<CreateProductResponse>(StatusCodes.Status201Created)
