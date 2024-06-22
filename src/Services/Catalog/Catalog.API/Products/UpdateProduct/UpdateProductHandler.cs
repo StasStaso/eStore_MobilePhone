@@ -1,4 +1,6 @@
-﻿namespace Catalog.API.Products.UpdateProduct;
+﻿using Catalog.API.Products.CreateProduct;
+
+namespace Catalog.API.Products.UpdateProduct;
 
 public record UpdateProductCommand(
     Guid Id,
@@ -10,6 +12,21 @@ public record UpdateProductCommand(
     : ICommand<UpdateProductResult>;
 
 public record UpdateProductResult(bool IsSuccess);
+
+public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(x => x.Id).NotNull().WithMessage("Product ID is required");
+
+        RuleFor(x => x.Name)
+            .NotEmpty().WithMessage("Name is required")
+            .Length(2, 150).WithMessage("Name must be between 2 and 150 characters");
+
+        RuleFor(x => x.Price)
+            .GreaterThan(0).WithMessage("Price must be greater than 0");
+    }
+}
 
 internal class UpdateProductCommandHandler
     (IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
@@ -23,7 +40,7 @@ internal class UpdateProductCommandHandler
 
         if (product is null) 
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(command.Id);
         }
 
         product.Name = command.Name;
