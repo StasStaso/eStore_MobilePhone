@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
 // Add services to the container.
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
 builder.Services.AddCarter();
 builder.Services.AddMediatR(config =>
 {
