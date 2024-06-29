@@ -1,5 +1,4 @@
-﻿
-namespace Basket.API.Data;
+﻿namespace Basket.API.Data;
 
 public class BasketRepository(IDocumentSession session) 
     : IBasketRepository
@@ -19,8 +18,11 @@ public class BasketRepository(IDocumentSession session)
         return basket;
     }
     
-    public Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        session.Delete<ShoppingCart>(userName);
+        await session.SaveChangesAsync(cancellationToken);
+
+        return true;
     }
 }
