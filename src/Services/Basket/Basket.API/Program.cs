@@ -1,3 +1,5 @@
+using BuildingBlocks.Exceptions.Handler;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var assembly = typeof(Program).Assembly;
@@ -6,6 +8,8 @@ var assembly = typeof(Program).Assembly;
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 builder.Services.AddCarter();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
@@ -21,6 +25,8 @@ builder.Services.AddMarten(opts =>
 
 var app = builder.Build();
 
-app.MapCarter();
 // Configure the HTTP request pipeline.
+app.MapCarter();
+app.UseExceptionHandler(options => { });
+
 app.Run();
