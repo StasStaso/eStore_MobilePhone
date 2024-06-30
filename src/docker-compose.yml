@@ -7,7 +7,7 @@ services:
  basketdb:
   image: postgres
 
- distributedCache:
+ distributedcache:
   image: redis
 
  catalog.api:
