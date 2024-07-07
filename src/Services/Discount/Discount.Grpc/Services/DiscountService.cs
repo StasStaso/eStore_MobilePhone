@@ -16,7 +16,7 @@ public class DiscountService(DiscountContext dbContext, ILogger<DiscountService>
 
         if (coupon is null) 
         {
-            coupon = new Coupon { ProductName = "No Discount", Description = "No Discount Desc", Amount = 0 };
+            coupon = new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
         }
 
         logger.LogInformation("Discount is retrieved for ProductName : {productName}, Amount : {amount}", coupon.ProductName, coupon.Amount);
@@ -68,7 +68,7 @@ public class DiscountService(DiscountContext dbContext, ILogger<DiscountService>
 
         if (coupon is null)
         {
-            throw new RpcException(new Status(StatusCode.InvalidArgument, $"Discount with ProductName={request.ProductName} is not found."));
+            throw new RpcException(new Status(StatusCode.NotFound, $"Discount with ProductName={request.ProductName} is not found."));
         }
 
         dbContext.Coupons.Remove(coupon);
