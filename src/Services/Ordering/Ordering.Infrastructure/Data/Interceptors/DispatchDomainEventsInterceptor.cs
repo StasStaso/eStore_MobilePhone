@@ -17,7 +17,7 @@ public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesIn
         return await base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public async Task DispatchDomainEvents(DbContext? context) 
+    public async Task DispatchDomainEvents(DbContext? context)
     {
         if (context == null) return;
 
@@ -26,13 +26,13 @@ public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesIn
             .Where(a => a.Entity.DomainEvents.Any())
             .Select(a => a.Entity);
 
-        var domainEventes = aggreates
+        var domainEvents = aggreates
             .SelectMany(a => a.DomainEvents)
             .ToList();
 
         aggreates.ToList().ForEach(a => a.ClearDomainEvents());
 
-        foreach (var domainEvent in domainEventes)
+        foreach (var domainEvent in domainEvents)
             await mediator.Publish(domainEvent);
     }
 }
