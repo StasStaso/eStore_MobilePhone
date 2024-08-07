@@ -1,6 +1,5 @@
-﻿namespace Ordering.API.Endpoints
+﻿namespace Ordering.API.Endpoints;
+
+public class GetOrders
 {
-    public class GetOrders
-    {
-    }
 }
