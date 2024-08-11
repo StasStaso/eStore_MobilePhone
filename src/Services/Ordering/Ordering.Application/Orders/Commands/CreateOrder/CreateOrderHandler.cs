@@ -1,8 +1,4 @@
-﻿using BuildingBlocks.CQRS;
-using Ordering.Application.Data;
-using Ordering.Application.Dtos;
-
-namespace Ordering.Application.Orders.Commands.CreateOrder;
+﻿namespace Ordering.Application.Orders.Commands.CreateOrder;
 
 public class CreateOrderHandler(IApplicationDbContext dbContext)
     : ICommandHandler<CreateOrderCommand, CreateOrderResult>
@@ -36,7 +32,7 @@ public class CreateOrderHandler(IApplicationDbContext dbContext)
             orderDto.BillingAddress.ZipCode);
 
         var newOrder = Order.Create(
-            id: OrderId.Of(new Guid()),
+            id: OrderId.Of(Guid.NewGuid()),
             customerId: CustomerId.Of(orderDto.CustomerId),
             orderName: OrderName.Of(orderDto.OrderName),
             shippingAddress: shippingAddress,

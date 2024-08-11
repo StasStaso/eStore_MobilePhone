@@ -6,6 +6,6 @@ public class OrderUpdateEventHandler(ILogger<OrderUpdateEventHandler> logger)
     public Task Handle(OrderUpdateEvent notification, CancellationToken cancellationToken)
     {
         logger.LogInformation("Domain Event handled: {DomainEvent}", notification.GetType().Name);
-        throw new NotImplementedException();
+        return Task.CompletedTask;
     }
 }
