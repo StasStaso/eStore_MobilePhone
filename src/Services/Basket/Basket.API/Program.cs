@@ -56,7 +56,6 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 //Async Communication Services
 builder.Services.AddMessageBroker(builder.Configuration);
 
-//
 
 var app = builder.Build();
 
