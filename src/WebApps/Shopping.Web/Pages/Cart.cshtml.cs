@@ -18,6 +18,13 @@ public class CartModel(IBasketService basketService,
 
     public async Task<IActionResult> OnPostRemoveToCartAsync(Guid productId) 
     {
-        return Page();
+        logger.LogInformation("Remove to cart button clicked");
+        Cart = await basketService.LoadUserBasket();
+
+        Cart.Items.RemoveAll(x => x.ProductId == productId);
+
+        await basketService.StoreBasket(new StoreBasketRequest(Cart));
+
+        return RedirectToPage();
     }
 }
