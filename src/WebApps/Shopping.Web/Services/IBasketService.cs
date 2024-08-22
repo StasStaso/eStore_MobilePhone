@@ -18,7 +18,7 @@ public interface IBasketService
 
     public async Task<ShoppingCartModel> LoadUserBasket()
     {
-        var userName = "swn";
+        var userName = "swn-1";
         ShoppingCartModel basket;
 
         try

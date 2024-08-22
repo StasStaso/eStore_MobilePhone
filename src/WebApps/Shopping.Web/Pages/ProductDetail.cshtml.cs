@@ -8,7 +8,7 @@ namespace Shopping.Web.Pages
         ILogger<ProductDetailModel> logger)
         : PageModel
     {
-        public ProductModel Product { get; set; } = default!;
+        public ProductModel Products { get; set; } = default!;
 
         [BindProperty]
         public string Color { get; set; } = default!;
@@ -19,7 +19,7 @@ namespace Shopping.Web.Pages
         public async Task<IActionResult> OnGetAsync(Guid productId)
         {
             var response = await catalogService.GetProduct(productId);
-            Product = response.Product;
+            Products = response.Product;
 
             return Page();
         }

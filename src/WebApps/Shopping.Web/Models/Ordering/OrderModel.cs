@@ -8,7 +8,7 @@ public record OrderModel(
     AddressModel BillingAddress,
     PaymentModel Payment,
     OrderStatus Status,
-    List<OrderItemModel> OrderItem);
+    List<OrderItemModel> OrderItems);
 
 public record OrderItemModel(Guid OrderId, Guid ProductId, int Quantity, decimal Price);
 
