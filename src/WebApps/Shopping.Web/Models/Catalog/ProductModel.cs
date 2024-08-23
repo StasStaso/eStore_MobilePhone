@@ -10,6 +10,6 @@ public class ProductModel
     public decimal Price { get; set; }
 }
 
-public record GetProductResponse(IEnumerable<ProductModel> Product);
-public record GetProductByCategoryResponse(IEnumerable<ProductModel> Product);
+public record GetProductResponse(IEnumerable<ProductModel> Products);
+public record GetProductByCategoryResponse(IEnumerable<ProductModel> Products);
 public record GetProductByIdResponse(ProductModel Product);

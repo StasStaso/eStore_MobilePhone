@@ -14,7 +14,7 @@ namespace Shopping.Web.Pages
         {
             logger.LogInformation("Index page visited");
             var result = await catalogService.GetProducts();
-            ProductList = result.Product; 
+            ProductList = result.Products; 
             return Page();
         }
 
