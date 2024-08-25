@@ -16,6 +16,7 @@ public class ShoppingCartItemModel
     public string ProductName { get; set; } = default!;
 }
 
+// wrapper classes
 public record GetBasketResponse(ShoppingCartModel Cart);
 
 public record StoreBasketRequest(ShoppingCartModel Cart);
