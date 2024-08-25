@@ -1,30 +1,27 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Shopping.Web.Pages;
-
-public class CartModel(IBasketService basketService,
-    ILogger<CartModel> logger) 
-    : PageModel
+namespace Shopping.Web.Pages
 {
-    public ShoppingCartModel Cart { get; set; } = new ShoppingCartModel();
-
-    public async Task<IActionResult> OnGetAsync()
+    public class CartModel(IBasketService basketService, ILogger<CartModel> logger)
+        : PageModel
     {
-        Cart = await basketService.LoadUserBasket();
+        public ShoppingCartModel Cart { get; set; } = new ShoppingCartModel();
 
-        return Page();
-    }
+        public async Task<IActionResult> OnGetAsync()
+        {
+            Cart = await basketService.LoadUserBasket();
 
-    public async Task<IActionResult> OnPostRemoveToCartAsync(Guid productId) 
-    {
-        logger.LogInformation("Remove to cart button clicked");
-        Cart = await basketService.LoadUserBasket();
+            return Page();
+        }
 
-        Cart.Items.RemoveAll(x => x.ProductId == productId);
+        public async Task<IActionResult> OnPostRemoveToCartAsync(Guid productId)
+        {
+            logger.LogInformation("Remove to cart button clicked");
+            Cart = await basketService.LoadUserBasket();
 
-        await basketService.StoreBasket(new StoreBasketRequest(Cart));
+            Cart.Items.RemoveAll(x => x.ProductId == productId);
 
-        return RedirectToPage();
+            await basketService.StoreBasket(new StoreBasketRequest(Cart));
+
+            return RedirectToPage();
+        }
     }
 }

@@ -18,7 +18,8 @@ public interface IBasketService
 
     public async Task<ShoppingCartModel> LoadUserBasket()
     {
-        var userName = "swn-1";
+        // Get Basket If Not Exist Create New Basket with Default Logged In User Name: swn
+        var userName = "swn";
         ShoppingCartModel basket;
 
         try
@@ -26,7 +27,7 @@ public interface IBasketService
             var getBasketResponse = await GetBasket(userName);
             basket = getBasketResponse.Cart;
         }
-        catch (ApiException apiException) when (apiException.StatusCode == HttpStatusCode.NotFound) { }
+        catch (ApiException apiException) when (apiException.StatusCode == HttpStatusCode.NotFound)
         {
             basket = new ShoppingCartModel
             {

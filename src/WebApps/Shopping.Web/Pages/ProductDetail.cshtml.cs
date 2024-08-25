@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace Shopping.Web.Pages
 {
-    public class ProductDetailModel(ICatalogService catalogService,
-        IBasketService basketService,
-        ILogger<ProductDetailModel> logger)
+    public class ProductDetailModel
+        (ICatalogService catalogService, IBasketService basketService, ILogger<ProductDetailModel> logger)
         : PageModel
     {
         public ProductModel Product { get; set; } = default!;
@@ -24,7 +20,7 @@ namespace Shopping.Web.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAddToCardAsync(Guid productId) 
+        public async Task<IActionResult> OnPostAddToCartAsync(Guid productId)
         {
             logger.LogInformation("Add to cart button clicked");
             var productResponse = await catalogService.GetProduct(productId);

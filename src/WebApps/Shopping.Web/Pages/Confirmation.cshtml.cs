@@ -1,18 +1,17 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Shopping.Web.Pages;
-
-public class ConfirmationModel : PageModel
+namespace Shopping.Web.Pages
 {
-    public string Message { get; set; } = default!;
-
-    public void OnGetContact()
+    public class ConfirmationModel : PageModel
     {
-        Message = "Your email was sent.";
-    }
+        public string Message { get; set; } = default!;
 
-    public void OnGetOrderSumitted() 
-    {
-        Message = "Your order submitted sucessfully.";
+        public void OnGetContact()
+        {
+            Message = "Your email was sent.";
+        }
+
+        public void OnGetOrderSubmitted()
+        {
+            Message = "Your order submitted successfully.";
+        }
     }
 }

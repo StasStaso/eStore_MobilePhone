@@ -6,7 +6,7 @@ public class BasketCheckoutModel
     public Guid CustomerId { get; set; } = default!;
     public decimal TotalPrice { get; set; } = default!;
 
-    //Address
+    // Shipping and BillingAddress
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;
     public string EmailAddress { get; set; } = default!;
@@ -15,7 +15,7 @@ public class BasketCheckoutModel
     public string State { get; set; } = default!;
     public string ZipCode { get; set; } = default!;
 
-    //Payment
+    // Payment
     public string CardName { get; set; } = default!;
     public string CardNumber { get; set; } = default!;
     public string Expiration { get; set; } = default!;
@@ -23,5 +23,6 @@ public class BasketCheckoutModel
     public int PaymentMethod { get; set; } = default!;
 }
 
-public record CheckoutBasketRequest(BasketCheckoutModel BasketCheckout);
+// wrapper classes
+public record CheckoutBasketRequest(BasketCheckoutModel BasketCheckoutDto);
 public record CheckoutBasketResponse(bool IsSuccess);
